@@ -1,0 +1,31 @@
+<div class="register_box">
+    <h3 class="text-center">Registeration</h3>
+    <form #userForm="ngForm" (ngSubmit)="saveDetail()" novalidate>
+        <div class="form-group">
+          <label for="exampleInputEmail1">First Name</label>
+          <input type="text" #nameRef="ngModel" required minlength="4" class="form-control" id="exampleInputEmail1" name="first_name" placeholder="Enter first name" [(ngModel)]="user.first_name">
+          <div *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)" class="alert alert-danger">
+              <div [hidden]="!nameRef.errors.required">Please enter a name</div>
+              <div [hidden]="!nameRef.errors.minlength">Please enter atleast 4 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">Last Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail2" name="last_name" placeholder="Enter last name" [(ngModel)]="user.last_name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail3">Phone No.</label>
+            <input type="text" class="form-control" id="exampleInputEmail3" name="phone_number" placeholder="Enter phone number" [(ngModel)]="user.phone_number">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail4">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail4" name="email" placeholder="Enter email" [(ngModel)]="user.email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword5">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword5" name="password" placeholder="Password" [(ngModel)]="user.password">
+        </div>
+        <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary">Submit</button>
+        <a href="javascript:void(0)" (click)="sendMeLogin()">Back to Login</a>
+      </form>
+    </div>
