@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { UserService } from '../_services/index';
+import { User } from '../_models/index';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +16,13 @@ export class HomeComponent implements OnInit {
   goalText = "My first life goal";
   goals = [];
 
-  constructor(private _data: DataService) { }
+  currentUser: User;
+    users: User[] = [];
+
+    constructor(private router: Router, private _data: DataService, private userService: UserService) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if(!this.currentUser) { this.router.navigate(['login']); }
+    }
 
   ngOnInit() {
     this._data.goal.subscribe(res => this.goals = res);

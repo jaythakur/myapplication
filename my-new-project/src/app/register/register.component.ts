@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
-
+import { AlertService, UserService } from '../_services/index';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +11,14 @@ import { DataService } from '../data.service';
 export class RegisterComponent implements OnInit {
 
   user = {}
-  constructor(private route: ActivatedRoute, private router: Router, private _data: DataService) { }
+  responseStatus:Object= [];
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private _data: DataService,
+    private alertService: AlertService,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
   }
@@ -20,7 +27,13 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  saveDetail() {
-    this._data.register(this.user)
+  createUser() {
+    this.userService.create(this.user).subscribe(
+      data => { this.user = ''; this.sendMeLogin() },
+      err => console.log(err),
+      () => console.log('Request Completed')
+   ); 
   }
+
+ z
 }

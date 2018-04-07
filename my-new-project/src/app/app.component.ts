@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  isLogin: boolean = false;
+  currentUser: any;
+
+    constructor() {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if(!this.currentUser) { this.isLogin= false;} else { this.isLogin = true; }
+        
+    }
+
 }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http , Response } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class DataService {
@@ -15,19 +17,10 @@ export class DataService {
   }
 
   register(userInfo) {
-    const req = this.http.post('http://jsonplaceholder.typicode.com/posts', {
-      title: 'foo',
-      body: 'bar',
-      userId: 1
-    })
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log("Error occured");
-        }
-      );
+   
+    return this.http.post('http://localhost/crm/api/index.php/User/register', JSON.stringify({
+      data:userInfo
+    }));
   }
 
 }

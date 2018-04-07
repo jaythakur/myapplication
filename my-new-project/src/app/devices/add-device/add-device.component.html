@@ -1,0 +1,114 @@
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Device info</h3>
+      </div>
+
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                  </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Device Info <small>sub title</small></h2>
+          
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <form #f="ngForm" (ngSubmit)="f.form.valid && save()" class="form-horizontal form-label-left" novalidate>
+
+              <span class="section">Device Info</span>
+
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Device Name <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input class="form-control col-md-7 col-xs-12" name="device_name" type="text" [(ngModel)]="model.device_name" #deviceName="ngModel" required>
+                  <div *ngIf="f.submitted && !deviceName.valid" class="help-block">Please provide detail to proceed.</div>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Accessories <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input class="form-control col-md-7 col-xs-12" name="accessories" type="text" [(ngModel)]="model.accessories" #accRef="ngModel" required>
+                  <div *ngIf="f.submitted && !accRef.valid" class="help-block">Please provide detail to proceed.</div>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Os Version <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input class="form-control col-md-7 col-xs-12" name="name" type="text" [(ngModel)]="model.os_version" #osRef="ngModel" required>
+                  <div *ngIf="f.submitted && !osRef.valid" class="help-block">Please provide detail to proceed.</div>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Purchased <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select class="form-control col-md-7 col-xs-12" name="purchased" [(ngModel)]="model.purchased" required>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Device Type <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select class="form-control col-md-7 col-xs-12" name="device_type" [(ngModel)]="model.device_type" #deviceTypeRef="ngModel" required>
+                    <option value="{{type.DEVICE_TYPE_ID}}" *ngFor="let type of deviceType">{{type.NAME}}</option>
+                  </select>
+                  <div *ngIf="f.submitted && !deviceTypeRef.valid" class="help-block">Please provide detail to proceed.</div>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Quantity <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input class="form-control col-md-7 col-xs-12" name="quantity" type="number" [(ngModel)]="model.quantity" #qtyRef="ngModel" required>
+                  <div *ngIf="f.submitted && !qtyRef.valid" class="help-block">Please provide detail to proceed.</div>
+                </div>
+              </div>
+              <div class="item form-group">
+                <label for="password" class="control-label col-md-3">Office</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <select class="form-control col-md-7 col-xs-12" name="office" [(ngModel)]="model.office" #officeRef="ngModel" required>
+                    <option value="Pune">Pune</option>
+                    <option value="Mumbai">Mumbai</option>
+                  </select>
+                  <div *ngIf="f.submitted && !officeRef.valid" class="help-block">Please provide detail to proceed.</div>
+                </div>
+              </div>
+             
+              <div class="ln_solid"></div>
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                  <input type="hidden" name="device_id" [(ngModel)]="model.device_id">
+                  <button type="button" class="btn btn-primary" (click)="f.reset()">Cancel</button>
+                  <button id="send" type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->

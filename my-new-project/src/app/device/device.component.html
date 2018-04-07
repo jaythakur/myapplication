@@ -1,0 +1,89 @@
+
+
+    <!-- page content -->
+    <div class="right_col" role="main">
+      <div class="">
+        <div class="page-title">
+          <div class="title_left">
+            <h3>Device Types</h3>
+          </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>View All Device Type</h2>
+             
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table id="datatable" class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+
+                  <tbody>
+                    <tr *ngFor="let device of deviceType;  let i = index">
+                      <td>{{device.NAME}}</td>
+                      <td>
+                          <a href="javascript:void(0);" (click)="editDeviceType(device)">Edit</a> | 
+                          <a href="javascript:void(0);" (click)="deletDeviceType(i, device)">Delete</a>
+                      </td>
+                    </tr>
+                   
+                  </tbody>
+                </table>
+              </div> 
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>Add new device type</h2>
+             
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <form #f="ngForm" (ngSubmit)="f.form.valid && save()" class="form-horizontal form-label-left" novalidate>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" name="name" [(ngModel)]="name" #nameRef="ngModel" class="form-control col-md-7 col-xs-12" required>
+                      <div *ngIf="f.submitted && !nameRef.valid" class="help-block">Name is required.</div>
+                    </div>
+                  </div>
+            
+                  <div class="ln_solid"></div>
+                  <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                      <input type="hidden" name="device_type_id" [(ngModel)]="device_type_id">
+                      <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        
+
+        
+
+          
+
+        </div>
+      </div>
+    </div>
+    <!-- /page content -->
+   
+   
